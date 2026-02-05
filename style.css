@@ -1,0 +1,211 @@
+:root {
+    --bg-color: #1a1a2e;
+    --container-bg: #222;
+    --text-color: #e0e0e0;
+    --primary-btn-bg: #0f3460;
+    --primary-btn-hover: #164a8a;
+    --stop-btn-bg: #e94560;
+    --stop-btn-hover: #f07b90;
+    --lap-btn-bg: #533483;
+    --lap-btn-hover: #674ba0;
+    --reset-btn-bg: #3f72af;
+    --reset-btn-hover: #568ccc;
+    --disabled-bg: #555;
+    --border-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: var(--container-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    border: 1px solid var(--border-color);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    letter-spacing: 1px;
+}
+
+.stopwatch-display {
+    font-family: 'monospace', 'digital', sans-serif; /* Fallback for a digital look */
+    font-size: 4.5em;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #00bcd4; /* A vibrant aqua for the display */
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+.stopwatch-display span {
+    display: inline-block;
+    min-width: 60px; /* Ensure consistent spacing */
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.control-button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    color: #fff;
+    flex: 1 1 auto; /* Allow buttons to grow and shrink */
+    min-width: 100px;
+}
+
+.control-button.start { background-color: var(--primary-btn-bg); }
+.control-button.start:not(:disabled):hover { background-color: var(--primary-btn-hover); transform: translateY(-2px); }
+
+.control-button.stop { background-color: var(--stop-btn-bg); }
+.control-button.stop:not(:disabled):hover { background-color: var(--stop-btn-hover); transform: translateY(-2px); }
+
+.control-button.lap { background-color: var(--lap-btn-bg); }
+.control-button.lap:not(:disabled):hover { background-color: var(--lap-btn-hover); transform: translateY(-2px); }
+
+.control-button.reset { background-color: var(--reset-btn-bg); }
+.control-button.reset:not(:disabled):hover { background-color: var(--reset-btn-hover); transform: translateY(-2px); }
+
+.control-button:disabled {
+    background-color: var(--disabled-bg);
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+}
+
+.lap-times-container {
+    margin-top: 30px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.lap-times-container h2 {
+    font-size: 1.8em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+#lapTimesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* Limit height for scrollability */
+    overflow-y: auto;
+    border-radius: 8px;
+    background-color: #2b2b2b;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+}
+
+#lapTimesList li {
+    background-color: #3a3a3a;
+    margin-bottom: 8px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+    color: var(--text-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#lapTimesList li:last-child {
+    margin-bottom: 0;
+}
+
+#lapTimesList li span:first-child {
+    font-weight: bold;
+    color: #00bcd4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .stopwatch-display {
+        font-size: 3.5em;
+        margin-bottom: 30px;
+    }
+
+    .stopwatch-display span {
+        min-width: 45px;
+    }
+
+    .controls {
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .control-button {
+        padding: 12px 20px;
+        font-size: 1em;
+        min-width: 90px;
+    }
+
+    .lap-times-container h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    #lapTimesList {
+        max-height: 150px;
+        padding: 8px;
+    }
+
+    #lapTimesList li {
+        padding: 10px 12px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 400px) {
+    .controls {
+        flex-direction: column; /* Stack buttons vertically */
+    }
+    .control-button {
+        min-width: unset;
+        width: 100%;
+    }
+    .stopwatch-display {
+        font-size: 3em;
+    }
+}
